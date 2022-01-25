@@ -20,6 +20,21 @@ contract DAOToken is ERC20, Ownable{
         _transfer(_msgSender(), devWallet, amount.mul(1).div(100));
         return true;
     }
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) public virtual override returns (bool) {
+        _transfer(sender, recipient, amount);
+        _transfer(sender, devWallet, amount.mul(1).div(100));
+        uint256 currentAllowance = allowance(sender, _msgSender());
+        require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
+        unchecked {
+            _approve(sender, _msgSender(), currentAllowance - amount.mul(101).div(100));
+        }
+
+        return true;
+    }
     function setDevWallet(address payable newDev_) public onlyOwner {
         require(newDev_ != address(0), 'DAOToken.setDevWallet: ');
         devWallet = newDev_;

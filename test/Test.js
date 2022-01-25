@@ -37,4 +37,14 @@ contract('Burn Token Contract', (accounts) => {
             'balance dev: ', bal_dev.toString()
         )
     })
+    it('Token Safe Transfer', async() => {
+        await daoToken.approve(accounts[0], web3.utils.toWei('500', 'Gwei'), {from: accounts[1]})
+        res = await daoToken.allowance(accounts[1], accounts[0])
+        console.log('Before Token TransferFrom: ', res.toString())
+        
+        await daoToken.transferFrom(accounts[1], accounts[2], web3.utils.toWei('100', 'Gwei'), {from: accounts[0]})
+
+        res = await daoToken.allowance(accounts[1], accounts[0])
+        console.log('Before Token TransferFrom: ', res.toString())
+    })
 })

@@ -3,9 +3,9 @@
 
 pragma solidity ^0.8.0;
 
-import "./IERC20.sol";
-import "./extensions/IERC20Metadata.sol";
-import "../../utils/Context.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "@openzeppelin/contracts/utils/Context.sol";
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -354,4 +354,3 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         uint256 amount
     ) internal virtual {}
 }
-a
