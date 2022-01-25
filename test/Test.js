@@ -14,5 +14,8 @@ contract('Burn Token Contract', (accounts) => {
     it('Create Token Proposal', async() => {
         res = await daoToken.totalSupply()
         console.log(res.toString())
+        res = await daoToken.decimals()
+        console.log(res.toString())
     })
+    
 })
